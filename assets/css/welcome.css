@@ -1,0 +1,36 @@
+body {
+
+}
+
+.navbar navbar-light {
+    height: 100%;
+}
+
+.container-fluid {
+    color: white;
+}
+
+a {
+    display: block;
+    color: white;
+}
+
+#myCarousel {
+    height: 600px;
+    width: 100%;    
+}
+
+.item {
+    height: 600px;
+    width: 100%; 
+}
+
+.item img{
+    height: 600px;
+    width: 100%; 
+}
+
+
+.carousel-inner {
+
+}
