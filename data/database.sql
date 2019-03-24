@@ -51,3 +51,5 @@ INSERT INTO room (type, capacity, floor, room_number) VALUES ("group", 10, 3, "N
 
 INSERT INTO reservation (stud_id, room_id, description, number_of_people, date, start_time, end_time) VALUES (1, 2, "DB II Group Project meeting", 3, "2019-03-23", "9:00:00", "11:00:00");
 INSERT INTO reservation (stud_id, room_id, description, number_of_people, date, start_time, end_time) VALUES (1, 2, "DB II Group Project presentation discussion", 3, "2019-03-30", "12:00:00", "14:00:00");
+INSERT INTO reservation (stud_id, room_id, description, number_of_people, date, start_time, end_time) VALUES (1, 3, "Software Engineering", 4, "2019-04-01", "13:00:00", "15:00:00");
+INSERT INTO reservation (stud_id, room_id, description, number_of_people, date, start_time, end_time) VALUES (1, 1, "Netowork Security", 2, "2019-04-02", "15:00:00", "18:00:00");

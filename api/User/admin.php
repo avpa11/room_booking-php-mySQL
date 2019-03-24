@@ -26,7 +26,20 @@ function listReservations($reservation){
   ?>
 
 
+
   <h1>Manage reservations</h1>
+
+  <?php
+  if ($reservation == null) {
+    ?>
+    <div>
+      <h2>There are no records in the database</h2>
+    </div>
+    <?php
+  }
+
+  else{
+  ?>
   <table class="table">
     <thead>
       <tr>
@@ -55,8 +68,9 @@ function listReservations($reservation){
         <TD>'.$r->start_time.'</TD>
         <TD>'.$r->end_time.'</TD>
         <TD><a href = "update.php">Update</a></TD>
-        <TD><a href = "delete.php">Delete</a></TD>
+        <TD><a href = "?action=delete&reservation_id='.$r->reservation_id.'">Delete</a></TD>
         </TR>';
+      }
     }
       ?>
     </tbody>
@@ -69,5 +83,20 @@ function listReservations($reservation){
 }
 
 
-listReservations($resev->read());
+if (empty($_GET))
+{
+
+  listReservations($resev->read());
+}
+
+else if (isset($_GET['action']))
+{
+  switch ($_GET['action'])
+  {
+    case 'delete':
+    $resev->delete($_GET['reservation_id']);
+    listReservations($resev->read());
+    break;
+  }
+}
 ?>
