@@ -18,7 +18,12 @@ class reservation
         $bindParams = [];
 
         //Get the results of the insert query (rows inserted)
-        $results = $p->query("SELECT * FROM reservation;", $bindParams);
+        $results = $p->query("SELECT reservation_id, username, type, description, number_of_people, date, start_time, end_time
+        FROM reservation 
+        JOIN students
+        ON students.id = reservation.stud_id
+        JOIN room
+        ON room.room_id = reservation.room_id;", $bindParams);
 
         //Disconnect from the database
         $p->disconnect();
