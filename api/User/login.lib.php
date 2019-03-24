@@ -24,7 +24,7 @@ if($stmt->rowCount() > 0){
         "id" => $row['id'],
         "username" => $row['username']
     );
-    header('Location: ../../page2.html');
+    header('Location: ../user/admin.php');
 }
 else{
     $librarian_arr=array(
