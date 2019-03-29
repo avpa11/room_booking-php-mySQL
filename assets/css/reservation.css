@@ -1,0 +1,20 @@
+body {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(255,255,255);
+}
+
+.table {
+    background-color: rgba(255,255,255, 0.5);
+    width: 95%; 
+    margin-left: 2.5%;
+}
+
+#delete, #update {
+    color: #660000;
+    text-decoration: none;
+}
+
+#delete:hover, #update:hover {
+    color: white;
+}
+
