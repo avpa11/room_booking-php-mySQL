@@ -1,5 +1,6 @@
 <?php
-
+include_once '../objects/reservations.php';
+include_once 'PDOAgent.class.php';
 class reservation    
 {
     //Attributes
@@ -151,6 +152,90 @@ class reservation
         
         //Return the objects
         return $results;
+    }
+
+
+    //////////////////////////////////
+    // FUNCTIONS FOR USERS USING BOOKING
+    /////////////////////////////////
+
+    function listCurrentReservations()
+    {
+        //new PDOAgent
+        $p = new PDOAgent("mysql", "root", "", "localhost", "test");
+
+        //Connect to the Database
+        $p->connect();
+
+        //WE NEED TO SPECIFY DATE FORMATS!!! FOR SQL TO READ
+        $format = 'Y-m-d H:i:s'; 
+
+
+        $date = date($format);
+        
+        
+
+        //WE NEED current date plus one week
+        $datePlusWeek = date($format, strtotime("+1 week"));
+
+        //Setup the Bind Parameters
+        $bindParams = [
+            'date' => $date,
+            'date_weekPlus' => $datePlusWeek
+        ];
+
+        //Get the results of the insert query (rows inserted)
+        $results = $p->query("SELECT reservation_id, first_name, room_number, description, number_of_people, date, start_time, end_time
+        FROM reservation 
+        JOIN students
+        ON students.id = reservation.stud_id
+        JOIN room
+        ON room.room_id = reservation.room_id WHERE date > :date AND date < :date_weekPlus", $bindParams);
+
+        //Disconnect from the database
+        $p->disconnect();
+        
+        //Return the objects
+        $reservations = array();
+
+        foreach($results as $row)   {
+            $reservation = new Reservations();
+            $reservation->id = $row->reservation_id;
+            $reservation->stud_name = $row->first_name;
+            $reservation->room_number = $row->room_number;
+            $reservation->description = $row->description;
+            $reservation->number_of_people = $row->number_of_people;
+            $reservation->date = $row->date;
+            $reservation->start_time = $row->start_time;
+            $reservation->end_time = $row->end_time;
+
+            $reservations[] = $reservation;
+        }
+
+        return $reservations;
+    }
+
+    function createNewReservation($reservation){
+        //new PDOAgent
+        $p = new PDOAgent("mysql", "root", "", "localhost", "test");
+
+        //Connect to the Database
+        $p->connect();
+
+        $bindParams = [
+            'stud_id' => $reservation->stud_name,
+            'room_id' => $reservation->room_number,
+            'description' => $reservation->description,
+            'number_of_people' => $reservation->number_of_people,
+            'date' => $reservation->date,
+            'start_time' => $reservation->start_time,
+            'end_time' => $reservation->end_time
+        ];
+
+        $result = $p->query("INSERT INTO reservation (stud_id, room_id, description, number_of_people, date, start_time, end_time)
+        VALUES(:stud_id, :room_id, :description, :number_of_people, :date, :start_time, :end_time)", $bindParams);
+
+        $p->disconnect();
     }
     
 }
