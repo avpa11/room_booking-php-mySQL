@@ -39,7 +39,7 @@ CREATE TABLE reservation (
   room_id INT(2) NOT NULL,
   description VARCHAR(50),
   number_of_people INT(1) NOT NULL,
-  date TIMESTAMP NOT NULL,
+  date DATE NOT NULL,
   start_time TIME NOT NULL,
   end_time TIME NOT NULL,
   CONSTRAINT reservation_ch CHECK (number_of_people<=6),

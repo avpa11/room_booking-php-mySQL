@@ -30,7 +30,7 @@ function heading() { ?>
 <nav class="navbar navbar-light" style="background-color: #754343;">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Welcome, librarian!</a></li>
+      <li class="active"><a href="admin.php">Welcome, librarian!</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="../../index.html"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
@@ -218,23 +218,31 @@ function searchForm() { ?>
 
 heading();
 
+/*
 if (empty($_GET))
 {
   listReservations($resev->read());
 }
-
-else if (!empty($_GET))
+*/
+if (empty($_GET))
 {
-
+  /*
   if (!empty($_GET['search']))
   {
       listReservations($resev->search($_GET['search']));
   }
+  */
+
   // If no search term(s) were provided,  renders the complete PLAYERS table
-  else
-  {
+  //else
+  //{
       listReservations($resev->read());
-  }  
+  //}  
+}
+
+else if (!empty($_GET['search'])) 
+{
+  listReservations($resev->search($_GET['search']));
 }
 
 else if (isset($_GET['action']))
