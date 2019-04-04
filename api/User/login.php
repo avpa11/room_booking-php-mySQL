@@ -24,6 +24,8 @@ if($stmt->rowCount() > 0){
         "id" => $row['id'],
         "username" => $row['username']
     );
+    session_start();
+    $_SESSION["user_id"] = $row["id"];
     header('Location: ../../welcome.html');
 }
 else{

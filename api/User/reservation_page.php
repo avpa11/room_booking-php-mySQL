@@ -1,7 +1,7 @@
 <?php
 include_once 'room_controller.php';
 include_once 'reservation.php';
-
+session_start();
 function heading(){?>
     <!DOCTYPE html>
     <html lang="en">
@@ -97,7 +97,12 @@ function buildReservations(){?>
                                                 <th scope="row"><?php echo $room->room_number ?></th>
                                                 <?php
                                                 for($ii = 0; $ii < 10; $ii++){
-                                                        echo '<td><a href="book">Book</a></td>';
+                                                        $start_time = $ii + 9;
+                                                        $start_time_string = $start_time . ':00:00';
+                                                        $end_time = $start_time + 1;
+                                                        $end_time_string = $end_time . ':00:00';
+                                                        $date_string = date('Y-m-d H:i:s', strtotime($date));
+                                                        echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
                                                     }
                                                 ?>
                                             </tr>
@@ -151,7 +156,12 @@ function buildReservations(){?>
                                                 <th scope="row"><?php echo $room->room_number; ?></th>
                                                 <?php
                                                     for($ii = 0; $ii < 10; $ii++){
-                                                        echo '<td><a href="book">Book</a></td>';
+                                                        $start_time = $ii + 9;
+                                                        $start_time_string = $start_time . ':00:00';
+                                                        $end_time = $start_time + 1;
+                                                        $end_time_string = $end_time . ':00:00';
+                                                        $date_string = date('Y-m-d H:i:s', strtotime($date));
+                                                        echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
                                                     }
                                             } else{?>
                                                 <tr>
@@ -169,7 +179,12 @@ function buildReservations(){?>
                                                             $name = $adaptedReservationArray[$ii]->stud_name;
                                                             echo "<td>$name</td>";
                                                         }else{
-                                                            echo '<td><a href="book">Book</a></td>'; 
+                                                            $start_time = $ii + 9;
+                                                            $start_time_string = $start_time . ':00:00';
+                                                            $end_time = $start_time + 1;
+                                                            $end_time_string = $end_time . ':00:00';
+                                                            $date_string = date('Y-m-d H:i:s', strtotime($date));
+                                                            echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
                                                         }
                                                     }
                                                 ?>

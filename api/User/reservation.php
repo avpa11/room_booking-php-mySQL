@@ -1,6 +1,6 @@
 <?php
 include_once '../objects/reservations.php';
-
+include_once 'PDOAgent.class.php';
 class reservation    
 {
     //Attributes
@@ -213,6 +213,29 @@ class reservation
         }
 
         return $reservations;
+    }
+
+    function createNewReservation($reservation){
+        //new PDOAgent
+        $p = new PDOAgent("mysql", "root", "", "localhost", "test");
+
+        //Connect to the Database
+        $p->connect();
+
+        $bindParams = [
+            'stud_id' => $reservation->stud_name,
+            'room_id' => $reservation->room_number,
+            'description' => $reservation->description,
+            'number_of_people' => $reservation->number_of_people,
+            'date' => $reservation->date,
+            'start_time' => $reservation->start_time,
+            'end_time' => $reservation->end_time
+        ];
+
+        $result = $p->query("INSERT INTO reservation (stud_id, room_id, description, number_of_people, date, start_time, end_time)
+        VALUES(:stud_id, :room_id, :description, :number_of_people, :date, :start_time, :end_time)", $bindParams);
+
+        $p->disconnect();
     }
     
 }
