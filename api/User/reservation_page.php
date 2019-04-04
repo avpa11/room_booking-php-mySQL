@@ -21,7 +21,7 @@ function heading(){?>
         <li class="active"><a href="#">Reservation schedule</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
         </ul>
     </div>
     </nav>
@@ -102,7 +102,12 @@ function buildReservations(){?>
                                                         $end_time = $start_time + 1;
                                                         $end_time_string = $end_time . ':00:00';
                                                         $date_string = date('Y-m-d H:i:s', strtotime($date));
-                                                        echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
+                                                        if($i != -1 && $i != 0){
+                                                            echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
+                                                        }
+                                                        else{
+                                                            echo '<td>Unavailable</td>';
+                                                        }
                                                     }
                                                 ?>
                                             </tr>
@@ -161,7 +166,11 @@ function buildReservations(){?>
                                                         $end_time = $start_time + 1;
                                                         $end_time_string = $end_time . ':00:00';
                                                         $date_string = date('Y-m-d H:i:s', strtotime($date));
-                                                        echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
+                                                        if($i != -1 && $i != 0){
+                                                            echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
+                                                        }else{
+                                                            echo '<td>Unavailable</td>';
+                                                        }
                                                     }
                                             } else{?>
                                                 <tr>
@@ -184,7 +193,12 @@ function buildReservations(){?>
                                                             $end_time = $start_time + 1;
                                                             $end_time_string = $end_time . ':00:00';
                                                             $date_string = date('Y-m-d H:i:s', strtotime($date));
-                                                            echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
+                                                            if($i != -1 && $i != 0){
+                                                                echo '<td><a href="reserve_room.php?start_time='.$start_time_string.'&end_time='.$end_time_string.'&date='.$date_string.'&room_id='.$room->id.'">Reserve</a></td>';
+                                                            }
+                                                            else{
+                                                                echo '<td>Unavailable</td>';
+                                                            }
                                                         }
                                                     }
                                                 ?>

@@ -171,7 +171,7 @@ class reservation
         $format = 'Y-m-d H:i:s'; 
 
 
-        $date = date($format);
+        $date = date('Y-m-d');
         
         
 
@@ -190,7 +190,7 @@ class reservation
         JOIN students
         ON students.id = reservation.stud_id
         JOIN room
-        ON room.room_id = reservation.room_id WHERE date > :date AND date < :date_weekPlus", $bindParams);
+        ON room.room_id = reservation.room_id WHERE date >= :date AND date < :date_weekPlus", $bindParams);
 
         //Disconnect from the database
         $p->disconnect();
