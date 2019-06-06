@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-print_r($_GET);
-
 function heading(){?>
     <!DOCTYPE html>
     <html lang="en">
@@ -22,7 +20,7 @@ function heading(){?>
         <li class="active"><a href="#">Reservation schedule</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
         </ul>
     </div>
     </nav>
